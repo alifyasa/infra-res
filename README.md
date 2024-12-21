@@ -1,1 +1,1 @@
-# self-host
+# Self Host
