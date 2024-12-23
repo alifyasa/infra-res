@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: teable-main
+  name: teable
 spec:
   replicas: 1
   selector:
@@ -26,6 +26,7 @@ spec:
             name: {{ .Release.Namespace }}-secrets
         - configMapRef:
             name: {{ .Release.Namespace }}-config
+        env:
         - name: NEXT_ENV_IMAGES_ALL_REMOTE
           value: "true"
         livenessProbe:
