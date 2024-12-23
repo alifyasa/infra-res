@@ -30,10 +30,6 @@ postgresql:
       log_connections = on                       # Logs new client connections.
       log_disconnections = on                    # Logs client disconnections.
 
-      # Log Checkpoints and Autovacuum
-      log_checkpoints = on                       # Logs checkpoint activity.
-      log_autovacuum_min_duration = 0            # Logs all autovacuum actions.
-
       # Log Errors
       log_min_messages = debug5                  # Logs everything, including debug messages.
       log_min_error_statement = debug5           # Logs all errors at the debug level.
@@ -42,12 +38,6 @@ postgresql:
       # Log Parameters
       log_parameter_max_length = -1              # Logs full parameter values.
       log_parameter_max_length_on_error = -1     # Logs full parameter values even on errors.
-
-      # Log Temp Files
-      log_temp_files = 0                         # Logs all temporary file creations.
-
-      # Log Deadlocks
-      log_lock_waits = on                        # Logs when a query waits for a lock.
 
       # Log Execution Plans
       auto_explain.log_min_duration = 0          # Logs execution plans for all queries (requires the auto_explain module).
