@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+  name: authentik-server
+spec:
+  rules:
+  - host: auth.alifyasa.id
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Release.Name }}-authentik-server
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - auth.alifyasa.id
+    secretName: tls-authentik
