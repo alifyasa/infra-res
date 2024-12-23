@@ -1,5 +1,5 @@
 teable:
-  PUBLIC_ORIGIN: db.alifyasa.id
+  PUBLIC_ORIGIN: https://db.alifyasa.id
   TEABLE_SECRET_KEY: PleaseChangeThis
 redis:
   auth:
