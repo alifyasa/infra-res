@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teable-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teable
+  template:
+    metadata:
+      labels:
+        app: teable
+    spec:
+      containers:
+      - name: teable
+        image: ghcr.io/teableio/teable:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: teable-data
+          mountPath: /app/.assets
+          readOnly: false
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Namespace }}-secrets
+        - configMapRef:
+            name: {{ .Release.Namespace }}-config
+        - name: NEXT_ENV_IMAGES_ALL_REMOTE
+          value: "true"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+      volumes:
+      - name: teable-data
+        persistentVolumeClaim:
+          claimName: teable-pvc
