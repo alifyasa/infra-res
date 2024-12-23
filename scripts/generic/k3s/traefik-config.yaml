@@ -1,0 +1,12 @@
+# https://k3s.rocks/install-setup/#install-k3s
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    logs:
+      level: INFO
+      access:
+        enabled: true
