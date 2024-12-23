@@ -6,20 +6,6 @@ metadata:
 spec:
   valuesContent: |-
     # <https://github.com/k3s-io/k3s/discussions/2997#discussioncomment-7966622>
-    deployment:
-      kind: DaemonSet
-    ports:
-      web:
-        forwardedHeaders:
-          insecure: true
-        proxyProtocol:
-          insecure: true
-      websecure:
-        forwardedHeaders:
-          insecure: true
-        proxyProtocol:
-          insecure: true
-    hostNetwork: true
     service:
       spec:
         externalTrafficPolicy: Local
