@@ -24,6 +24,27 @@ postgresql:
       host    all  all        192.168.0.0/16 scram-sha-256
 
     configuration: |-
+      # FINE TUNING (https://pgtune.leopard.in.ua)
+      # DB Version: 15
+      # OS Type: linux
+      # DB Type: web
+      # Total Memory (RAM): 2048 MB
+      # Data Storage: ssd
+
+      max_connections = 200
+      shared_buffers = 512MB
+      effective_cache_size = 1536MB
+      maintenance_work_mem = 128MB
+      checkpoint_completion_target = 0.9
+      wal_buffers = 16MB
+      default_statistics_target = 100
+      random_page_cost = 1.1
+      effective_io_concurrency = 200
+      work_mem = 1310kB
+      huge_pages = off
+      min_wal_size = 1GB
+      max_wal_size = 4GB
+
       listen_addresses = '*'
 
       # Log All Statements
@@ -43,24 +64,3 @@ postgresql:
       auto_explain.log_analyze = on              # Includes actual execution times.
       auto_explain.log_buffers = on              # Logs buffer usage.
       auto_explain.log_timing = on               # Logs timing information.
-
-      # FINE TUNING (https://pgtune.leopard.in.ua)
-      # DB Version: 17
-      # OS Type: linux
-      # DB Type: web
-      # Total Memory (RAM): 2048 MB
-      # Data Storage: ssd
-
-      max_connections = 200
-      shared_buffers = 512MB
-      effective_cache_size = 1536MB
-      maintenance_work_mem = 128MB
-      checkpoint_completion_target = 0.9
-      wal_buffers = 16MB
-      default_statistics_target = 100
-      random_page_cost = 1.1
-      effective_io_concurrency = 200
-      work_mem = 1310kB
-      huge_pages = off
-      min_wal_size = 1GB
-      max_wal_size = 4GB
