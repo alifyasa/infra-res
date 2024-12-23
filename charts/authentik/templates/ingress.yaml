@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: {{ .Release.Name }}-authentik-server
+            name: {{ .Release.Name }}-server
             port:
               number: 80
         path: /
