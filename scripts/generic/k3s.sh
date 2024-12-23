@@ -1,4 +1,5 @@
 # Install k3s  
 curl -sfL https://get.k3s.io | sh -  
 mkdir -p ~/.kube
-sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo chown $USER:$USER /etc/rancher/k3s/k3s.yaml
+sudo ln -s /etc/rancher/k3s/k3s.yaml ~/.kube/config
