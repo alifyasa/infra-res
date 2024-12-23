@@ -23,6 +23,10 @@ spec:
     service:
       spec:
         externalTrafficPolicy: Local
+    updateStrategy:
+      rollingUpdate:
+        maxUnavailable: 1
+        maxSurge: 0
     # <https://k3s.rocks/install-setup/#install-k3s>
     logs:
       level: INFO
