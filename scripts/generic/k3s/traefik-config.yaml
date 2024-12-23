@@ -1,4 +1,3 @@
-# https://k3s.rocks/install-setup/#install-k3s
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
@@ -6,10 +5,25 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    # <https://github.com/k3s-io/k3s/discussions/2997#discussioncomment-7966622>
+    deployment:
+      kind: DaemonSet
+    ports:
+      web:
+        forwardedHeaders:
+          insecure: true
+        proxyProtocol:
+          insecure: true
+      websecure:
+        forwardedHeaders:
+          insecure: true
+        proxyProtocol:
+          insecure: true
     hostNetwork: true
     service:
       spec:
         externalTrafficPolicy: Local
+    # <https://k3s.rocks/install-setup/#install-k3s>
     logs:
       level: INFO
       access:
