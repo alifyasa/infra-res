@@ -1,0 +1,42 @@
+pgadmin4:
+  securityContext:
+    runAsUser: 5050
+    runAsGroup: 5050
+    fsGroup: 5050
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+postgresql:
+  primary:
+    resourcesPreset: "large"
+    pgHbaConfiguration: |
+      # Unix sockets
+      local   all  postgres   trust
+      local   all  all        peer
+
+      host    all  all        10.0.0.0/8     scram-sha-256
+      host    all  all        172.16.0.0/12  scram-sha-256
+      host    all  all        192.168.0.0/16 scram-sha-256
+
+    configuration: |
+      listen_addresses = '*'
+
+      # https://pgtune.leopard.in.ua
+      # DB Version: 17
+      # OS Type: linux
+      # DB Type: web
+      # Total Memory (RAM): 2048 MB
+      # Data Storage: ssd
+
+      max_connections = 200
+      shared_buffers = 512MB
+      effective_cache_size = 1536MB
+      maintenance_work_mem = 128MB
+      checkpoint_completion_target = 0.9
+      wal_buffers = 16MB
+      default_statistics_target = 100
+      random_page_cost = 1.1
+      effective_io_concurrency = 200
+      work_mem = 1310kB
+      huge_pages = off
+      min_wal_size = 1GB
+      max_wal_size = 4GB
