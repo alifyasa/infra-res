@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+  name: teable-server
+spec:
+  rules:
+  - host: db.alifyasa.id
+    http:
+      paths:
+      - backend:
+          service:
+            name: teable
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - db.alifyasa.id
+    secretName: tls-teable
