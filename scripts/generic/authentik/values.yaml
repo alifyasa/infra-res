@@ -9,7 +9,7 @@ authentik:
 
 server:
   ingress:
-      enabled: false
+    enabled: false
 
 postgresql:
   enabled: true
