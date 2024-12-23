@@ -1,5 +1,5 @@
 apiVersion: v2
-name: Data
+name: pg-stack
 description: PostgreSQL and PgAdmin4
 type: application
 version: 0.1.0
