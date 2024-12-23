@@ -12,7 +12,7 @@ postgresql:
     database: teable
   primary:
     resourcesPreset: "large"
-    pgHbaConfiguration: |
+    pgHbaConfiguration: |-
       # Unix sockets
       local   all  postgres   trust
       local   all  all        peer
@@ -23,7 +23,7 @@ postgresql:
       host    all  all        172.16.0.0/12  scram-sha-256
       host    all  all        192.168.0.0/16 scram-sha-256
 
-    configuration: |
+    configuration: |-
       listen_addresses = '*'
 
       # Log All Statements
