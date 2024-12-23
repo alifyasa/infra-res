@@ -6,6 +6,10 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    hostNetwork: true
+    service:
+      spec:
+        externalTrafficPolicy: Local
     logs:
       level: INFO
       access:
