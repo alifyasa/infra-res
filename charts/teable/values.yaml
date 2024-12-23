@@ -1,14 +1,15 @@
-pgadmin4:
-  env:
-    email: admin
-    password: SuperSecretPassword
-  securityContext:
-    runAsUser: 5050
-    runAsGroup: 5050
-    fsGroup: 5050
-    allowPrivilegeEscalation: false
-    runAsNonRoot: true
+teable:
+  PUBLIC_ORIGIN: db.alifyasa.id
+  TEABLE_SECRET_KEY: PleaseChangeThis
+redis:
+  auth:
+    password: PleaseChangeThis
 postgresql:
+  auth:
+    enablePostgresUser: false
+    username: teable
+    password: PleaseChangeThis
+    database: teable
   primary:
     resourcesPreset: "large"
     pgHbaConfiguration: |

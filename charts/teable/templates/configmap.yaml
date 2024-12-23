@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: teable-config
+data:
+  PUBLIC_ORIGIN: {{ .Values.teable.PUBLIC_ORIGIN }}
+  POSTGRES_HOST: teable-db
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: {{ .Values.postgresql.auth.database }}
+  POSTGRES_USER: {{ .Values.postgresql.auth.username }}
+  REDIS_HOST: teable-cache
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  BACKEND_CACHE_PROVIDER: redis
