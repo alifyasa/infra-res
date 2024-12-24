@@ -1,6 +1,16 @@
 teable:
   PUBLIC_ORIGIN: https://db.alifyasa.id
   TEABLE_SECRET_KEY: PleaseChangeThis
+  # <https://help.teable.io/developer/openid-connect#example-using-authentik-as-oidc-provider>
+  BACKEND_OIDC_CLIENT_ID: authentik_client_id
+  BACKEND_OIDC_CLIENT_SECRET: authentik_client_secret
+  BACKEND_OIDC_CALLBACK_URL: https://db.alifyasa.id/api/auth/oidc/callback
+  BACKEND_OIDC_USER_INFO_URL: https://auth.alifyasa.id/application/o/userinfo/
+  BACKEND_OIDC_TOKEN_URL: https://auth.alifyasa.id/application/o/token/
+  BACKEND_OIDC_AUTHORIZATION_URL: https://auth.alifyasa.id/application/o/authorize/
+  BACKEND_OIDC_ISSUER: https://auth.alifyasa.id/application/o/teable/
+  BACKEND_OIDC_OTHER: {"scope": ["email", "profile"]}
+  SOCIAL_AUTH_PROVIDERS: oidc
 redis:
   auth:
     password: PleaseChangeThis
