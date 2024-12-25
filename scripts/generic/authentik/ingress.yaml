@@ -7,7 +7,7 @@ metadata:
   name: authentik-server
 spec:
   rules:
-  - host: auth.alifyasa.id
+  - host: auth.alifyasa.com
     http:
       paths:
       - backend:
@@ -19,5 +19,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - auth.alifyasa.id
+    - auth.alifyasa.com
     secretName: tls-authentik

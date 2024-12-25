@@ -1,15 +1,15 @@
 teable:
   env:
-    PUBLIC_ORIGIN: "https://db.alifyasa.id"
+    PUBLIC_ORIGIN: "https://data.alifyasa.com"
     TEABLE_SECRET_KEY: PleaseChangeThis
     # <https://help.teable.io/developer/openid-connect#example-using-authentik-as-oidc-provider>
     BACKEND_OIDC_CLIENT_ID: authentik_client_id
     BACKEND_OIDC_CLIENT_SECRET: authentik_client_secret
-    BACKEND_OIDC_CALLBACK_URL: "https://db.alifyasa.id/api/auth/oidc/callback"
-    BACKEND_OIDC_USER_INFO_URL: "https://auth.alifyasa.id/application/o/userinfo/"
-    BACKEND_OIDC_TOKEN_URL: "https://auth.alifyasa.id/application/o/token/"
-    BACKEND_OIDC_AUTHORIZATION_URL: "https://auth.alifyasa.id/application/o/authorize/"
-    BACKEND_OIDC_ISSUER: "https://auth.alifyasa.id/application/o/teable/"
+    BACKEND_OIDC_CALLBACK_URL: "https://data.alifyasa.com/api/auth/oidc/callback"
+    BACKEND_OIDC_USER_INFO_URL: "https://auth.alifyasa.com/application/o/userinfo/"
+    BACKEND_OIDC_TOKEN_URL: "https://auth.alifyasa.com/application/o/token/"
+    BACKEND_OIDC_AUTHORIZATION_URL: "https://auth.alifyasa.com/application/o/authorize/"
+    BACKEND_OIDC_ISSUER: "https://auth.alifyasa.com/application/o/teable/"
     # For some reason yaml tried to parse a json string EVEN when fully escaped, 
     # multiline string is somehow a fix
     BACKEND_OIDC_OTHER: |-
