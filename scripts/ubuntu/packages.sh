@@ -1,4 +1,4 @@
-sudo apt install \
+sudo apt install -y \
     build-essential \
     jq yq \
     wget curl aria2 \
@@ -9,3 +9,6 @@ sudo apt install \
     rsync \
     ripgrep fzf \
     screen tmux
+
+echo "source /usr/share/doc/fzf/examples/key-bindings.zsh" >> ~/.zshrc
+echo "source /usr/share/doc/fzf/examples/completion.zsh" >> ~/.zshrc
