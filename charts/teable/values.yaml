@@ -1,19 +1,20 @@
 teable:
-  PUBLIC_ORIGIN: "https://db.alifyasa.id"
-  TEABLE_SECRET_KEY: PleaseChangeThis
-  # <https://help.teable.io/developer/openid-connect#example-using-authentik-as-oidc-provider>
-  BACKEND_OIDC_CLIENT_ID: authentik_client_id
-  BACKEND_OIDC_CLIENT_SECRET: authentik_client_secret
-  BACKEND_OIDC_CALLBACK_URL: "https://db.alifyasa.id/api/auth/oidc/callback"
-  BACKEND_OIDC_USER_INFO_URL: "https://auth.alifyasa.id/application/o/userinfo/"
-  BACKEND_OIDC_TOKEN_URL: "https://auth.alifyasa.id/application/o/token/"
-  BACKEND_OIDC_AUTHORIZATION_URL: "https://auth.alifyasa.id/application/o/authorize/"
-  BACKEND_OIDC_ISSUER: "https://auth.alifyasa.id/application/o/teable/"
-  # For some reason yaml tried to parse a json STRING even when fully escaped, 
-  # so I'm forced to use multiline string
-  BACKEND_OIDC_OTHER: |-
-    {"scope": ["email", "profile", "openid"]}
-  SOCIAL_AUTH_PROVIDERS: oidc
+  env:
+    PUBLIC_ORIGIN: "https://db.alifyasa.id"
+    TEABLE_SECRET_KEY: PleaseChangeThis
+    # <https://help.teable.io/developer/openid-connect#example-using-authentik-as-oidc-provider>
+    BACKEND_OIDC_CLIENT_ID: authentik_client_id
+    BACKEND_OIDC_CLIENT_SECRET: authentik_client_secret
+    BACKEND_OIDC_CALLBACK_URL: "https://db.alifyasa.id/api/auth/oidc/callback"
+    BACKEND_OIDC_USER_INFO_URL: "https://auth.alifyasa.id/application/o/userinfo/"
+    BACKEND_OIDC_TOKEN_URL: "https://auth.alifyasa.id/application/o/token/"
+    BACKEND_OIDC_AUTHORIZATION_URL: "https://auth.alifyasa.id/application/o/authorize/"
+    BACKEND_OIDC_ISSUER: "https://auth.alifyasa.id/application/o/teable/"
+    # For some reason yaml tried to parse a json string EVEN when fully escaped, 
+    # multiline string is somehow a fix
+    BACKEND_OIDC_OTHER: |-
+      {"scope": ["email", "profile", "openid"]}
+    SOCIAL_AUTH_PROVIDERS: oidc
 redis:
   auth:
     password: PleaseChangeThis
@@ -24,7 +25,15 @@ postgresql:
     password: PleaseChangeThis
     database: teable
   primary:
-    resourcesPreset: "large"
+    resources:
+      limits:
+        memory: 4096Mi
+        cpu: 2000m
+      requests:
+        memory: 256Mi
+        cpu: 250m
+    persistence:
+      size: 64Gi
     pgHbaConfiguration: |-
       # Unix sockets
       local   all  postgres   trust
@@ -40,23 +49,24 @@ postgresql:
       # FINE TUNING (https://pgtune.leopard.in.ua)
       # DB Version: 15
       # OS Type: linux
-      # DB Type: web
-      # Total Memory (RAM): 2048 MB
+      # DB Type: oltp
+      # Total Memory (RAM): 4096 MB
+      # CPUs num: 2
       # Data Storage: ssd
 
-      max_connections = 200
-      shared_buffers = 512MB
-      effective_cache_size = 1536MB
-      maintenance_work_mem = 128MB
+      max_connections = 300
+      shared_buffers = 1GB
+      effective_cache_size = 3GB
+      maintenance_work_mem = 256MB
       checkpoint_completion_target = 0.9
       wal_buffers = 16MB
       default_statistics_target = 100
       random_page_cost = 1.1
       effective_io_concurrency = 200
-      work_mem = 1310kB
+      work_mem = 1747kB
       huge_pages = off
-      min_wal_size = 1GB
-      max_wal_size = 4GB
+      min_wal_size = 2GB
+      max_wal_size = 8GB
 
       listen_addresses = '*'
 

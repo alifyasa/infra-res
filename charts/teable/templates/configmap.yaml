@@ -3,7 +3,6 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Namespace }}-config
 data:
-  PUBLIC_ORIGIN: {{ .Values.teable.PUBLIC_ORIGIN }}
   POSTGRES_HOST: {{ .Release.Namespace }}-postgresql
   POSTGRES_PORT: "5432"
   POSTGRES_DB: {{ .Values.postgresql.auth.database }}
@@ -11,16 +10,7 @@ data:
   REDIS_HOST: {{ .Release.Namespace }}-redis-master
   REDIS_PORT: "6379"
   REDIS_DB: "0"
-  BACKEND_CACHE_PROVIDER: redis
-  BACKEND_OIDC_CLIENT_ID: {{ .Values.teable.BACKEND_OIDC_CLIENT_ID }}
-  BACKEND_OIDC_CLIENT_SECRET: {{ .Values.teable.BACKEND_OIDC_CLIENT_SECRET }}
-  BACKEND_OIDC_CALLBACK_URL: {{ .Values.teable.BACKEND_OIDC_CALLBACK_URL }}
-  BACKEND_OIDC_USER_INFO_URL: {{ .Values.teable.BACKEND_OIDC_USER_INFO_URL }}
-  BACKEND_OIDC_TOKEN_URL: {{ .Values.teable.BACKEND_OIDC_TOKEN_URL }}
-  BACKEND_OIDC_AUTHORIZATION_URL: {{ .Values.teable.BACKEND_OIDC_AUTHORIZATION_URL }}
-  BACKEND_OIDC_ISSUER: {{ .Values.teable.BACKEND_OIDC_ISSUER }}
-  # For some reason yaml tried to parse a json string, so I'm forced to use 
-  # multiline string
-  BACKEND_OIDC_OTHER: |-
-    {{ .Values.teable.BACKEND_OIDC_OTHER }}
-  SOCIAL_AUTH_PROVIDERS: {{ .Values.teable.SOCIAL_AUTH_PROVIDERS }}
+  {{- range $key, $value := .Values.teable.env }}
+  {{ $key }}: |-
+    {{ $value }}
+  {{- end }}

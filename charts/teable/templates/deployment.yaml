@@ -15,6 +15,13 @@ spec:
       containers:
       - name: teable
         image: ghcr.io/teableio/teable:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limit:
+            cpu: 750m
+            memory: 768Mi
         ports:
         - containerPort: 3000
         volumeMounts:
