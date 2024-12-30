@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: teable-db-migrate
-        image: ghcr.io/teableio/teable-db-migrate:latest
+        image: ghcr.io/teableio/teable-db-migrate:1.5.2-build.684-amd64
         env:
         - name: PRISMA_DATABASE_URL
           valueFrom:

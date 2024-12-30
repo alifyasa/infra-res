@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: teable
-        image: ghcr.io/teableio/teable:latest
+        image: ghcr.io/teableio/teable:1.5.2-build.684-amd64
         resources:
           requests:
             cpu: 100m
