@@ -7,6 +7,7 @@ app:
     CMD_S3_SECRET_ACCESS_KEY: "PleaseChangeThis"
   configs:
     CMD_DOMAIN: notes.alifyasa.com
+    CMD_PROTOCOL_USESSL: true
 
     CMD_EMAIL: false
     CMD_ALLOW_EMAIL_REGISTER: false
