@@ -10,6 +10,7 @@ app:
     CMD_PROTOCOL_USESSL: true
 
     CMD_EMAIL: false
+    CMD_DEFAULT_PERMISSION: private
     CMD_ALLOW_EMAIL_REGISTER: false
 
     CMD_OAUTH2_USER_PROFILE_URL: "https://auth.alifyasa.com/application/o/userinfo/"
