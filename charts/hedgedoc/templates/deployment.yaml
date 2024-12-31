@@ -24,27 +24,8 @@ spec:
             memory: 768Mi
         ports:
         - containerPort: 3000
-        volumeMounts:
-        - name: {{ .Chart.Name }}-data
-          mountPath: /app/.assets
-          readOnly: false
         envFrom:
         - secretRef:
             name: {{ .Release.Namespace }}-secrets
         - configMapRef:
             name: {{ .Release.Namespace }}-config
-        env:
-        - name: NEXT_ENV_IMAGES_ALL_REMOTE
-          value: "true"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3000
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 3
-          failureThreshold: 3
-      volumes:
-      - name: {{ .Chart.Name }}-data
-        persistentVolumeClaim:
-          claimName: {{ .Chart.Name }}-pvc
