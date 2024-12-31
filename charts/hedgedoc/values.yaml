@@ -8,6 +8,7 @@ app:
   configs:
     CMD_DOMAIN: notes.alifyasa.com
     CMD_PROTOCOL_USESSL: true
+    CMD_SESSION_SECRET: PleaseChangeThis
 
     CMD_EMAIL: false
     CMD_DEFAULT_PERMISSION: private
