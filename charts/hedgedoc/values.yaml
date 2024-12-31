@@ -1,0 +1,98 @@
+app:
+  secrets:
+    SECRET_KEY: PleaseChangeThis
+    CMD_OAUTH2_CLIENT_ID: authentik_client_id
+    CMD_OAUTH2_CLIENT_SECRET: authentik_client_secret
+    BACKEND_STORAGE_S3_ACCESS_KEY: "PleaseChangeThis"
+    BACKEND_STORAGE_S3_SECRET_KEY: "PleaseChangeThis"
+  configs:
+    PUBLIC_ORIGIN: "https://data.alifyasa.com"
+
+    CMD_OAUTH2_USER_PROFILE_URL: "https://auth.alifyasa.com/application/o/userinfo/"
+    CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR: preferred_username
+    CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR: name
+    CMD_OAUTH2_USER_PROFILE_EMAIL_ATTR: email
+    CMD_OAUTH2_USER_PROFILE_ID_ATTR: preferred_username
+    CMD_OAUTH2_TOKEN_URL: "https://auth.alifyasa.com/application/o/token/"
+    CMD_OAUTH2_AUTHORIZATION_URL: "https://auth.alifyasa.com/application/o/authorize/"
+    CMD_OAUTH2_PROVIDERNAME: OIDC
+    CMD_OAUTH2_SCOPE: "email profile openid"
+
+    BACKEND_STORAGE_PROVIDER: s3
+    BACKEND_STORAGE_S3_REGION: global
+    BACKEND_STORAGE_S3_ENDPOINT: "https://gateway.storjshare.io"
+    BACKEND_STORAGE_PUBLIC_BUCKET: "???"
+    BACKEND_STORAGE_PRIVATE_BUCKET: "???"
+redis:
+  architecture: standalone
+  auth:
+    password: PleaseChangeThis
+postgresql:
+  auth:
+    enablePostgresUser: false
+    username: teable
+    password: PleaseChangeThis
+    database: teable
+  primary:
+    resources:
+      limits:
+        memory: 4096Mi
+        cpu: 2000m
+      requests:
+        memory: 256Mi
+        cpu: 250m
+    persistence:
+      size: 64Gi
+    pgHbaConfiguration: |-
+      # Unix sockets
+      local   all  postgres   trust
+      local   all  all        peer
+      
+      host    all  all        127.0.0.0/8    trust
+
+      host    all  all        10.0.0.0/8     scram-sha-256
+      host    all  all        172.16.0.0/12  scram-sha-256
+      host    all  all        192.168.0.0/16 scram-sha-256
+
+    configuration: |-
+      # FINE TUNING (https://pgtune.leopard.in.ua)
+      # DB Version: 15
+      # OS Type: linux
+      # DB Type: oltp
+      # Total Memory (RAM): 4096 MB
+      # CPUs num: 2
+      # Data Storage: ssd
+
+      max_connections = 300
+      shared_buffers = 1GB
+      effective_cache_size = 3GB
+      maintenance_work_mem = 256MB
+      checkpoint_completion_target = 0.9
+      wal_buffers = 16MB
+      default_statistics_target = 100
+      random_page_cost = 1.1
+      effective_io_concurrency = 200
+      work_mem = 1747kB
+      huge_pages = off
+      min_wal_size = 2GB
+      max_wal_size = 8GB
+
+      listen_addresses = '*'
+
+      # Log All Statements
+      log_statement = 'all'                      # Logs all SQL statements.
+      log_duration = on                          # Logs the duration of each statement.
+
+      # Log Connections and Disconnections
+      log_connections = on                       # Logs new client connections.
+      log_disconnections = on                    # Logs client disconnections.
+
+      # Log Parameters
+      log_parameter_max_length = -1              # Logs full parameter values.
+      log_parameter_max_length_on_error = -1     # Logs full parameter values even on errors.
+
+      # Log Execution Plans
+      auto_explain.log_min_duration = 0          # Logs execution plans for all queries (requires the auto_explain module).
+      auto_explain.log_analyze = on              # Includes actual execution times.
+      auto_explain.log_buffers = on              # Logs buffer usage.
+      auto_explain.log_timing = on               # Logs timing information.

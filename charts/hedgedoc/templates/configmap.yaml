@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Namespace }}-config
+data:
+  POSTGRES_HOST: {{ .Release.Namespace }}-postgresql
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: {{ .Values.postgresql.auth.database }}
+  POSTGRES_USER: {{ .Values.postgresql.auth.username }}
+  REDIS_HOST: {{ .Release.Namespace }}-redis-master
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  {{- range $key, $value := .Values.app.configs }}
+  {{ $key }}: |-
+    {{ $value }}
+  {{- end }}
