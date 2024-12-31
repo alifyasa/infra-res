@@ -1,4 +1,4 @@
-helm upgrade teable . \
+helm upgrade hedgedoc . \
     --install \
-    -n teable \
+    -n hedgedoc \
     --create-namespace
