@@ -23,10 +23,6 @@ app:
     BACKEND_STORAGE_S3_ENDPOINT: "https://gateway.storjshare.io"
     BACKEND_STORAGE_PUBLIC_BUCKET: "???"
     BACKEND_STORAGE_PRIVATE_BUCKET: "???"
-redis:
-  architecture: standalone
-  auth:
-    password: PleaseChangeThis
 postgresql:
   auth:
     enablePostgresUser: false
