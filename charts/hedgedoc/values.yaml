@@ -6,8 +6,7 @@ app:
     CMD_S3_ACCESS_KEY_ID: "PleaseChangeThis"
     CMD_S3_SECRET_ACCESS_KEY: "PleaseChangeThis"
   configs:
-    PUBLIC_ORIGIN: "https://data.alifyasa.com"
-
+    CMD_DOMAIN: notes.alifyasa.com
     CMD_OAUTH2_USER_PROFILE_URL: "https://auth.alifyasa.com/application/o/userinfo/"
     CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR: preferred_username
     CMD_OAUTH2_USER_PROFILE_DISPLAY_NAME_ATTR: name
