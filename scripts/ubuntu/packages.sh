@@ -8,7 +8,8 @@ sudo apt install -y \
     htop \
     rsync \
     ripgrep fzf \
-    screen tmux
+    screen tmux \
+    python3-full
 
 echo "source /usr/share/doc/fzf/examples/key-bindings.zsh" >> ~/.zshrc
 echo "source /usr/share/doc/fzf/examples/completion.zsh" >> ~/.zshrc
