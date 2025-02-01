@@ -11,5 +11,5 @@ sudo apt install -y \
     screen tmux \
     python3-full
 
-echo "source /usr/share/doc/fzf/examples/key-bindings.zsh" >> ~/.zshrc
-echo "source /usr/share/doc/fzf/examples/completion.zsh" >> ~/.zshrc
+echo "source /usr/share/doc/fzf/examples/key-bindings.bash" >> ~/.bashrc
+#echo "source /usr/share/doc/fzf/examples/completion.zsh" >> ~/.zshrc
