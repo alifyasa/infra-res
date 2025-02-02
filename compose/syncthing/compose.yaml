@@ -1,0 +1,11 @@
+services:
+  syncthing:
+    image: syncthing/syncthing
+    volumes:
+      - "~/Sync/:/var/syncthing/Sync"
+      - "./config/:/var/syncthing/config"
+    ports:
+      - 127.0.0.1:8384:8384
+      - 22000:22000/udp # QUIC file transfers
+    restart: unless-stopped
+
