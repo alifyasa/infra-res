@@ -6,6 +6,6 @@ services:
       - "./config/:/var/syncthing/config"
     ports:
       - 127.0.0.1:8384:8384
-      - 22000:22000/udp # QUIC file transfers
+      - 22000:22000
     restart: unless-stopped
 
