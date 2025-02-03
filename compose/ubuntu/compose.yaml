@@ -1,0 +1,7 @@
+services:
+  ubuntu:
+    build: .
+    volumes:
+      - ~/.ssh:/home/ubuntu/.ssh:ro
+    ports:
+      - "2222:22"
