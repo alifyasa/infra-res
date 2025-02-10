@@ -1,0 +1,7 @@
+services:
+  debian-sandbox:
+    build: .
+    container_name: debian-sandbox
+    tty: true
+    stdin_open: true
+
